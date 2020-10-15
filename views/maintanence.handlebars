@@ -1,5 +1,12 @@
 <h1> We are under maintanence, check later! </h1>
 {{#if helpers.alertEnabled}}
-<h4> Alert of the day: </h4>
-<div>{{helpers.alertinfo}}</div>
+<div class="ui icon message">
+  <i class="inbox icon"></i>
+  <div class="content">
+    <div class="header">
+	    {{helpers.alertTitle}}
+    </div>
+    <p>{{helpers.alertinfo}}</p>
+  </div>
+</div>
 {{/if}}

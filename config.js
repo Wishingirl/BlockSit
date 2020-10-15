@@ -3,5 +3,6 @@ module.exports = {
 	maintanencetitle:'<h1>Site is under maintanence.</h1>',
 	sitename: 'Yes',
 	alertEnabled: true,
-	alertText: "Templated."
+	alertTitle: "Actualizaciones en curso...",
+	alertText: "Estamos trabajando en el sitio web actualmente. El sitio ira mas lento de lo normal."
 }

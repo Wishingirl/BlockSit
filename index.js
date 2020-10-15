@@ -9,6 +9,7 @@ app.set('view engine', 'handlebars');
 
 app.use('/static', express.static(path.join(__dirname, 'views/public')))
 
+app.enable('view cache');
 
 app.engine('handlebars', exphbs());
 
@@ -18,6 +19,7 @@ app.get('/games', (req, res) => {
             layout: false,
 
             helpers: {
+		    alertTitle: config.alertTitle,
                 alertinfo: config.alertText,
                 alertEnabled: config.alertEnabled,
             }
@@ -25,6 +27,7 @@ app.get('/games', (req, res) => {
     } else {
         res.render('games', {
             helpers: {
+		alertTitle: config.alertTitle,
                 alertinfo: config.alertText,
                 alertEnabled: config.alertEnabled,
             }
@@ -33,11 +36,40 @@ app.get('/games', (req, res) => {
 
 
 })
+
+app.get('/blog', (req, res) => {
+    if (config.maintanencemode == true) {
+        res.render('maintanence', {
+            layout: false,
+
+            helpers: {
+		    		    alertTitle: config.alertTitle,
+
+                alertinfo: config.alertText,
+                alertEnabled: config.alertEnabled,
+            }
+        });
+    } else {
+        res.render('blog', {
+            helpers: {
+		    		    alertTitle: config.alertTitle,
+
+                alertinfo: config.alertText,
+                alertEnabled: config.alertEnabled,
+            }
+        });
+    }
+
+
+})
+
 app.get('/', (req, res) => {
     if (config.maintanencemode == true) {
         res.render('maintanence', {
             layout: false,
             helpers: {
+		    		    alertTitle: config.alertTitle,
+
                 alertinfo: config.alertText,
                 alertEnabled: config.alertEnabled,
             }
@@ -45,6 +77,8 @@ app.get('/', (req, res) => {
     } else {
         res.render('home', {
             helpers: {
+		    		    alertTitle: config.alertTitle,
+
                 alertinfo: config.alertText,
                 alertEnabled: config.alertEnabled,
             }

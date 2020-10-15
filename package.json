@@ -12,6 +12,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-handlebars": "^5.1.0",
+    "gulp": "^4.0.2",
     "helmet": "^4.1.1"
   }
 }
