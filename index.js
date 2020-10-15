@@ -11,49 +11,50 @@ app.use('/static', express.static(path.join(__dirname, 'views/public')))
 
 
 app.engine('handlebars', exphbs());
-app.get('/games', (req, res) => {
-	if (config.maintanencemode == true) {
-		res.render('maintanence', {
-						layout: false,
 
-			helpers: {
-				alertinfo: config.alertText,
-				alertEnabled: config.alertEnabled,
-			}
-		});
-	} else {
-		res.render('games', {
-			helpers: {
-				alertinfo: config.alertText,
-				alertEnabled: config.alertEnabled,
-			}
-		});
-	}
+app.get('/games', (req, res) => {
+    if (config.maintanencemode == true) {
+        res.render('maintanence', {
+            layout: false,
+
+            helpers: {
+                alertinfo: config.alertText,
+                alertEnabled: config.alertEnabled,
+            }
+        });
+    } else {
+        res.render('games', {
+            helpers: {
+                alertinfo: config.alertText,
+                alertEnabled: config.alertEnabled,
+            }
+        });
+    }
 
 
 })
 app.get('/', (req, res) => {
-	if (config.maintanencemode == true) {
-		res.render('maintanence', {
-			layout: false,
-			helpers: {
-				alertinfo: config.alertText,
-				alertEnabled: config.alertEnabled,
-			}
-		});
-	} else {
-		res.render('home', {
-			helpers: {
-				alertinfo: config.alertText,
-				alertEnabled: config.alertEnabled,
-			}
-		});
-	}
+    if (config.maintanencemode == true) {
+        res.render('maintanence', {
+            layout: false,
+            helpers: {
+                alertinfo: config.alertText,
+                alertEnabled: config.alertEnabled,
+            }
+        });
+    } else {
+        res.render('home', {
+            helpers: {
+                alertinfo: config.alertText,
+                alertEnabled: config.alertEnabled,
+            }
+        });
+    }
 })
 
 
 
 
 app.listen(3000, () => {
-	console.log('server started');
+    console.log('server started');
 });
