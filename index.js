@@ -16,7 +16,8 @@ app.get('/', (req, res) => {
 	}
 	res.render('home', {
 		helpers: {
-			foo: "yes!"
+			alertinfo: config.alertText,
+			alertEnabled: config.alertEnabled,
 		}
 	});
 })
