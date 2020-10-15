@@ -13,31 +13,39 @@ app.use('/static', express.static(path.join(__dirname, 'views/public')))
 app.engine('handlebars', exphbs());
 app.get('/games', (req, res) => {
 	if (config.maintanencemode == true) {
-		console.log("TEST")
-		res.send(config.maintanencetitle)
-
+		res.render('maintanence', {
+			helpers: {
+				alertinfo: config.alertText,
+				alertEnabled: config.alertEnabled,
+			}
+		});
+	} else {
+		res.render('games', {
+			helpers: {
+				alertinfo: config.alertText,
+				alertEnabled: config.alertEnabled,
+			}
+		});
 	}
-	res.render('games', {
-		helpers: {
-			alertinfo: config.alertText,
-			alertEnabled: config.alertEnabled,
-		}
-	});
 
 
 })
 app.get('/', (req, res) => {
 	if (config.maintanencemode == true) {
-		console.log("TEST")
-		res.send(config.maintanencetitle)
-
+		res.render('maintanence', {
+			helpers: {
+				alertinfo: config.alertText,
+				alertEnabled: config.alertEnabled,
+			}
+		});
+	} else {
+		res.render('home', {
+			helpers: {
+				alertinfo: config.alertText,
+				alertEnabled: config.alertEnabled,
+			}
+		});
 	}
-	res.render('home', {
-		helpers: {
-			alertinfo: config.alertText,
-			alertEnabled: config.alertEnabled,
-		}
-	});
 })
 
 
