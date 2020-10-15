@@ -14,6 +14,8 @@ app.engine('handlebars', exphbs());
 app.get('/games', (req, res) => {
 	if (config.maintanencemode == true) {
 		res.render('maintanence', {
+						layout: false,
+
 			helpers: {
 				alertinfo: config.alertText,
 				alertEnabled: config.alertEnabled,
@@ -33,6 +35,7 @@ app.get('/games', (req, res) => {
 app.get('/', (req, res) => {
 	if (config.maintanencemode == true) {
 		res.render('maintanence', {
+			layout: false,
 			helpers: {
 				alertinfo: config.alertText,
 				alertEnabled: config.alertEnabled,
