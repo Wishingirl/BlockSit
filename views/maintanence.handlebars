@@ -1,14 +1,16 @@
-<h1> We are under maintanence, check later! </h1>
 {{#if helpers.alertEnabled}}
-<div class="ui icon message">
-  <i class="inbox icon"></i>
-  <div class="content">
-    <div class="header">
-	    {{helpers.alertTitle}}
-    </div>
-    <p>{{helpers.alertinfo}}</p>
-  </div>
+<script>document.addEventListener('DOMContentLoaded', () => {
+  (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+    var $notification = $delete.parentNode;
+
+    $delete.addEventListener('click', () => {
+      $notification.parentNode.removeChild($notification);
+    });
+  });
+});</script>
+ <div class="notification is-warning">
+  <button class="delete"></button>
+{{helpers.alertinfo}}
 </div>
 {{/if}}
-
 

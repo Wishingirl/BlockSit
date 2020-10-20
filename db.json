@@ -1,0 +1,24 @@
+{
+  "games": [
+    {
+      "id": 1,
+      "name": "lowdb is awesome",
+      "url": "test"
+    },
+    {
+      "id": 1,
+      "name": "lowdb is awesome",
+      "url": "test"
+    },
+    {
+      "id": 1,
+      "name": "lowdb is awesome",
+      "url": "test"
+    },
+    {
+      "id": 1,
+      "name": "lowdb is awesome",
+      "url": "test"
+    }
+  ]
+}
