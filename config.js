@@ -1,7 +1,6 @@
 const dotenv = require('dotenv');
 dotenv.config();
 ad = process.env.ADMINTOKEN;
-console.log(ad)
 module.exports = {
     siteurl: "",
     admintoken: this.ad,

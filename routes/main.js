@@ -26,29 +26,23 @@ router.get('/', function(req, res) {
 
 
 router.get('/changelog', (req, res) => {
-    if (config.maintanencemode == true) {
-        res.render('maintanence', {
-            layout: false,
+    config.maintanencemode == true ? res.render('maintanence', {
+        layout: false,
 
-            helpers: {
-                alertTitle: config.alertTitle,
+        helpers: {
+            alertTitle: config.alertTitle,
 
-                alertinfo: config.alertText,
-                alertEnabled: config.alertEnabled,
-            }
-        });
-    } else {
-        res.render('blog', {
-            helpers: {
-                alertTitle: config.alertTitle,
+            alertinfo: config.alertText,
+            alertEnabled: config.alertEnabled,
+        }
+    }) : res.render('blog', {
+        helpers: {
+            alertTitle: config.alertTitle,
 
-                alertinfo: config.alertText,
-                alertEnabled: config.alertEnabled,
-            }
-        });
-    }
-
-
+            alertinfo: config.alertText,
+            alertEnabled: config.alertEnabled,
+        }
+    });
 })
 
 
