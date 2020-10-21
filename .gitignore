@@ -1,0 +1,6 @@
+.env
+.history
+blog_files
+node_modules
+package.json
+package-lock.json
