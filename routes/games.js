@@ -8,8 +8,11 @@ const FileSync = require("lowdb/adapters/FileSync");
 router.use("/static", express.static(path.join(__dirname, "../views/public")));
 
 // middleware that is specific to this router
-
+const game = new FileSync("./database.json");
+const db = low(game);
 // define the home page route
+games = db.get("games");
+
 router.get("/", (req, res) => {
     config.maintanencemode == true ?
         res.render("maintanence", {
@@ -23,6 +26,7 @@ router.get("/", (req, res) => {
         }) :
         res.render("games", {
             helpers: {
+                games: JSON.stringify(games),
                 alertTitle: config.alertTitle,
                 alertinfo: config.alertText,
                 alertEnabled: config.alertEnabled,

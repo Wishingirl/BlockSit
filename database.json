@@ -1,4 +1,10 @@
 {
-  "games": [],
+  "games": [
+    {
+      "id": "Yltw6o9XpK",
+      "title": "game 1 is pog!",
+      "url": "www.000.google.com"
+    }
+  ],
   "simulcasts": []
 }
