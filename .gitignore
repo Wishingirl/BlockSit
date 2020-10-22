@@ -3,3 +3,4 @@
 blog_files
 node_modules
 package-lock.json
+database.json
