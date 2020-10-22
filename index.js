@@ -1,56 +1,36 @@
-const express = require('express');
-var config = require('./config');
+const express = require("express");
+var config = require("./config");
 const bodyParser = require("body-parser");
-const helmet = require('helmet');
+const helmet = require("helmet");
 const app = express();
-const exphbs = require('express-handlebars');
-const path = require('path');
-const cors = require('cors')
-const morgan = require('morgan')
-
-app.use(morgan())
-
-
-
-// Setting database defaults
-//const gameAdapter = new FileSync('./db/games.json');
-//const simulcastAdapter = new FileSync('./db/simulcast.json')
-//const gameDB = low(gameAdapter);
-//const simulcastDB = low(simulcastAdapter);
-
+const exphbs = require("express-handlebars");
+const path = require("path");
+const cors = require("cors");
+const morgan = require("morgan");
+let apidb = require("./db/api");
+let mainroutes = require("./routes/main");
+let gamespage = require("./routes/games");
 
 // setting the view engine
-app.set('view engine', 'handlebars');
+app.set("view engine", "handlebars");
 
 // Configuring the server
+app.use(morgan());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(helmet());
-app.use('/static', express.static(path.join(__dirname, 'views/public')))
-app.enable('view cache');
+app.use("/static", express.static(path.join(__dirname, "views/public")));
+app.enable("view cache");
 
-app.engine('handlebars', exphbs());
-
-let mainroutes = require('./routes/main');
+app.engine("handlebars", exphbs());
 
 
-
-let gamespage = require('./routes/games');
 // Routing
-app.use('/', mainroutes);
+app.use("/", mainroutes);
+app.use("/games", gamespage);
+app.use("/api", apidb);
 
-app.use('/games', gamespage);
-let apidb = require('./db/api');
-app.use('/api', apidb);
-
-
-
-
-
-
-
-
-port = process.env.PORT || 4000
+port = process.env.PORT || 4000;
 
 app.listen(port, () => {
     console.log(`Server Started on Port ${port}`);
