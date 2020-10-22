@@ -32,7 +32,11 @@ router.get('/:id', (req, res, next) => {
 
 })
 router.post('/newGame', (req, res) => {
-        req.body["token"] != config.admintoken ? res.send("Incorrect token.") : res.send("correct");
+        if (req.body["token"] == config.admintoken) {
+            res.send("ok!")
+        } else {
+            res.send("nope")
+        }
     })
     // define the about route
 router.get('/about', (req, res) => {

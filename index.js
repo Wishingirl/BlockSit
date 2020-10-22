@@ -6,18 +6,17 @@ const app = express();
 const exphbs = require('express-handlebars');
 const path = require('path');
 const cors = require('cors')
-const Database = require("@replit/database")
-
-
 const morgan = require('morgan')
 
 app.use(morgan())
 
 
-const games = new Database()
 
 // Setting database defaults
-
+//const gameAdapter = new FileSync('./db/games.json');
+//const simulcastAdapter = new FileSync('./db/simulcast.json')
+//const gameDB = low(gameAdapter);
+//const simulcastDB = low(simulcastAdapter);
 
 
 // setting the view engine
