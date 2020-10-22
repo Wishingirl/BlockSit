@@ -1,6 +1,6 @@
 module.exports = {
     siteurl: "",
-    admintoken: "",
+    admintoken: "22",
     maintanencemode: false,
     maintanencetitle: '<h1>Site is under maintanence.</h1>',
     sitename: 'Yes',
