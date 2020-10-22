@@ -37,12 +37,11 @@ let mainroutes = require('./routes/main');
 
 let gamespage = require('./routes/games');
 // Routing
-app.use('/', mainroutes)
+app.use('/', mainroutes);
 
-app.use('/games', gamespage)
-
-
-
+app.use('/games', gamespage);
+let apidb = require('./db/api');
+app.use('/api', apidb);
 
 
 

@@ -9,8 +9,3 @@ router.use('/static', express.static(path.join(__dirname, '../views/public')))
 const game = new FileSync('games.json');
 const gamedb = low(game);
 // middleware
-
-
-router.get('/games', (req, res) => {
-
-})
