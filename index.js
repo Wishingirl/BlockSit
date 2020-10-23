@@ -10,7 +10,12 @@ const morgan = require("morgan");
 let apidb = require("./db/api");
 let mainroutes = require("./routes/main");
 let gamespage = require("./routes/games");
+const low = require("lowdb");
+const FileSync = require("lowdb/adapters/FileSync");
 
+// middleware that is specific to this router
+const game = new FileSync("./database.json");
+const db = low(game);
 // setting the view engine
 app.set("view engine", "handlebars");
 
@@ -31,7 +36,12 @@ app.use("/games", gamespage);
 app.use("/api", apidb);
 
 port = process.env.PORT || 4000;
+gamez = db.get("games")
+    .map('title')
+    .value()
+
 
 app.listen(port, () => {
+    console.log(gamez)
     console.log(`Server Started on Port ${port}`);
 });

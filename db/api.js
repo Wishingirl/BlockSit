@@ -14,23 +14,22 @@ const nanoid = require("nanoid");
 
 // Database
 db.defaults({ games: [], simulcasts: [] }).write();
-
+// www.mipagina/games
 router.get("/games", (req, res) => {
     res.send(db.get("games"));
 });
-router.get("/games/:id", (req, res) => {
-    Game = db.get("posts").find({ id: this.req.params.id }).value();
-    db.has(Game).value() ? res.send(Game) : res.send("Not found.");
+router.get("/games/id/:id", (req, res) => {
+    res.send(db.get("games").find({ id: req.params.id }).value())
+
 });
 router.get("/games/:name", (req, res) => {
-    Game = db.get("posts").find({ title: this.req.params.name }).value();
+    Game = db.get("games").find({ title: req.params.name }).value();
     Game ? res.send(Game) : res.send("Not found.");
 });
 
-router.post("/newgame", (req, res) => {
+router.post("/games", (req, res) => {
     if (req.body["token"] == config.admintoken) {
-        db
-            .get("games")
+        db.get("games")
             .push({
                 id: nanoid.nanoid(10),
                 title: req.body["name"],
@@ -42,38 +41,36 @@ router.post("/newgame", (req, res) => {
         res.send("incorrect token");
     }
 });
-router.put("/updategame", (req, res, next) => {
+router.put("/games", (req, res, next) => {
     // Update game is complex lulw
-    if (req.body["token"] != config.admintoken) {
-        res.send("Incorrect Admin Token")
+    if (req.body["token"] != config.admintoken) { // does he have a token?
+        res.send("Incorrect Admin Token"); // nope
     }
-    if (req.body["token"] === config.admintoken) {
-        req.body["name"] ? next() : res.send("cant do");
-        if (req.body["newurl"] && !req.body["newname"]) {
-            db
-                .get("games")
+    if (req.body["token"] === config.admintoken) { // yes, does he have the correct token?
+        req.body["name"] ? next() : res.send("cant do"); // Next() -> Yes you have || No? Cant do.
+        if (req.body["newurl"] && !req.body["newname"]) { // Your telling me you want to update the url but not the name.
+
+            db.get("games") // Get games db
                 .find({
-                    title: req.body["name"],
+                    title: req.body["name"], // Find the tile by the name request
                 })
                 .assign({
-                    url: req.body["newurl"],
+                    url: req.body["newurl"], // Set the new url
                 })
-                .write();
-            res.send("Game url updated.");
-        } else if (req.body["newname"] && !req.body["newurl"]) {
-            db
-                .get("games")
+                .write(); //Apply
+            res.send("Game url updated."); // Output with information.
+        } else if (req.body["newname"] && !req.body["newurl"]) { // You want to update the name?
+            db.get("games")
                 .find({
-                    title: req.body["name"],
+                    title: req.body["name"], //Find by name
                 })
                 .assign({
-                    title: req.body["newname"],
+                    title: req.body["newname"], //Update the name
                 })
-                .write();
-            res.send("Game name updated.");
+                .write(); //apply
+            res.send("Game name updated."); // Output the info
         } else if (req.body["newname"] && req.body["newurl"]) {
-            db
-                .get("games")
+            db.get("games")
                 .find({
                     title: req.body["name"],
                 })
@@ -83,6 +80,8 @@ router.put("/updategame", (req, res, next) => {
                 })
                 .write();
             res.send("Game url and name updated.");
+        } else if (!req.body["newname"] && !req.body["newurl"]) {
+            res.send("Empty parameters.")
         }
     }
 });

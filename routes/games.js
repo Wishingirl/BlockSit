@@ -12,7 +12,7 @@ const game = new FileSync("./database.json");
 const db = low(game);
 // define the home page route
 games = db.get("games");
-
+gamez = db.get("games").title;
 router.get("/", (req, res) => {
     config.maintanencemode == true ?
         res.render("maintanence", {
@@ -26,7 +26,7 @@ router.get("/", (req, res) => {
         }) :
         res.render("games", {
             helpers: {
-                games: JSON.stringify(games),
+                games: db.get("games"),
                 alertTitle: config.alertTitle,
                 alertinfo: config.alertText,
                 alertEnabled: config.alertEnabled,
@@ -34,13 +34,7 @@ router.get("/", (req, res) => {
         });
 });
 router.get("/:id", (req, res, next) => {});
-router.post("/newGame", (req, res) => {
-    if (req.body["token"] == config.admintoken) {
-        res.send("ok!");
-    } else {
-        res.send("nope");
-    }
-});
+
 // define the about route
 router.get("/about", (req, res) => {
     res.send("About birds");
