@@ -19,13 +19,10 @@ router.get("/games", (req, res) => {
     res.send(db.get("games"));
 });
 router.get("/games/id/:id", (req, res) => {
-    res.send(db.get("games").find({ id: req.params.id }).value())
+    res.send(db.get("games").find({ id: req.params.id }).value());
 
 });
-router.get("/games/:name", (req, res) => {
-    Game = db.get("games").find({ title: req.params.name }).value();
-    Game ? res.send(Game) : res.send("Not found.");
-});
+
 
 router.post("/games", (req, res) => {
     if (req.body["token"] == config.admintoken) {
